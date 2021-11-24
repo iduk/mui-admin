@@ -1,54 +1,68 @@
 import * as React from 'react'
-import { createTheme, ThemeProvider } from '@mui/material/styles'
-import CssBaseline from '@mui/material/CssBaseline'
-import useMediaQuery from '@mui/material/useMediaQuery'
-import Box from '@mui/material/Box'
-import Typography from '@mui/material/Typography'
-import Link from '@mui/material/Link'
-import Navigator from './Navigator'
-import Content from './Content'
-import Topbar from './Topbar'
+import Layout from '../components/Layout'
+import Button from '@mui/material/Button'
+import AlertDialog from '../components/AlertDialog'
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}.
-    </Typography>
-  )
-}
-
-const drawerWidth = 256
+import DialogActions from '@mui/material/DialogActions'
+import DialogContent from '@mui/material/DialogContent'
+import DialogContentText from '@mui/material/DialogContentText'
+import DialogTitle from '@mui/material/DialogTitle'
 
 export default function Index() {
-  const [mobileOpen, setMobileOpen] = React.useState(false)
+  const [open, setOpen] = React.useState(false)
 
-  const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen)
+  const handleClose = () => {
+    setOpen(false)
+  }
+  const handleClickOpen = () => {
+    setOpen(true)
   }
 
   return (
-    <Box sx={{ display: 'flex', minHeight: '100vh' }}>
-      <CssBaseline />
-      <Box component="nav" sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}>
-        <Navigator
-          PaperProps={{ style: { width: drawerWidth } }}
-          variant=""
-          open={mobileOpen}
-          onClose={handleDrawerToggle}
-        />
+    <Layout>
+      <div>
+        <Button variant="contained" color="primary" size="large" onClick={handleClickOpen}>
+          일반팝업
+        </Button>
 
-        <Navigator PaperProps={{ style: { width: drawerWidth } }} sx={{ display: { sm: 'block', xs: 'none' } }} />
-      </Box>
-      <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
-        <Topbar onDrawerToggle={handleDrawerToggle} />
-        <Box component="main" sx={{ flex: 1, py: 6, px: 4, bgcolor: '#f4f4f4' }}>
-          <Content />
-        </Box>
-      </Box>
-    </Box>
+        <AlertDialog open={open} handleClose={handleClose} maxWidth={'xs'}>
+          {/* Title */}
+          <DialogTitle id="alert-dialog-title">제목은 이렇게</DialogTitle>
+
+          {/* Content */}
+          <DialogContent>
+            <DialogContentText id="alert-dialog-description">여따가 내용</DialogContentText>
+          </DialogContent>
+
+          {/* Buttons */}
+          <DialogActions>
+            <Button onClick={handleClose}>취소</Button>
+            <Button onClick={handleClose} autoFocus>
+              확인
+            </Button>
+          </DialogActions>
+        </AlertDialog>
+      </div>
+    </Layout>
   )
 }
+
+// const AlertSample = ({ open, handleClose }) => {
+//   return (
+//     <Dialog open={open} aria-labelledby="alert-dialog-title" aria-describedby="alert-dialog-description">
+//       <DialogTitle id="alert-dialog-title">{"Use Google's location service?"}</DialogTitle>
+//       <DialogContent>
+//         <DialogContentText id="alert-dialog-description">
+//           Let Google help apps determine location. This means sending anonymous location data to Google, even when no
+//           apps are running.
+//         </DialogContentText>
+//       </DialogContent>
+//       <DialogActions>
+//         <Button onClick={handleClose}>Disagree</Button>
+//         <Button onClick={handleClose} autoFocus>
+//           Agree
+//         </Button>
+//       </DialogActions>
+//     </Dialog>
+//   )
+// }
