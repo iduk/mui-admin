@@ -1,41 +1,46 @@
-import { green } from '@mui/material/colors'
+import { blueGrey, teal } from '@mui/material/colors'
 import { createTheme } from '@mui/material/styles'
-import { spacing, typography } from '@mui/system'
+import { palette, spacing, typography } from '@mui/system'
 
 // Create a theme instance.
 const theme = createTheme({
   palette: {
+    mode: 'dark',
     primary: {
-      main: '#5cbbbb',
-      contrastText: '#fff',
+      main: teal.A400,
     },
     secondary: {
-      main: '#f2994a',
-      contrastText: '#fff',
+      main: '#323c4a',
     },
-    neutral: {
-      main: '#64748B',
-      contrastText: '#fff',
+    background: {
+      default: '#111111',
     },
   },
   typography: {
-    h5: {
-      fontWeight: 500,
-      fontSize: 26,
-      letterSpacing: 0.5,
+    fontFamily: [
+      'Nunito',
+      'Noto Sans KR',
+      '-apple-system',
+      'BlinkMacSystemFont',
+      '"Segoe UI"',
+      '"Helvetica Neue"',
+      'Arial',
+      'sans-serif',
+      '"Apple Color Emoji"',
+      '"Segoe UI Emoji"',
+      '"Segoe UI Symbol"',
+    ].join(','),
+    body1: {
+      fontSize: 14,
+      letterSpacing: '-0.4px',
+      lineHeight: 'normal',
     },
   },
   shape: {
-    borderRadius: 8,
+    borderRadius: 4,
   },
+
   components: {
-    MuiDrawer: {
-      styleOverrides: {
-        paper: {
-          backgroundColor: '#081627',
-        },
-      },
-    },
     MuiButton: {
       styleOverrides: {
         root: {
@@ -46,7 +51,15 @@ const theme = createTheme({
           '&:active': {
             boxShadow: 'none',
           },
+          '&:hover': {
+            boxShadow: 'none',
+          },
         },
+      },
+    },
+    MuiTextField: {
+      styleOverrides: {
+        borderRadius: 2,
       },
     },
     MuiTab: {
@@ -69,11 +82,18 @@ const theme = createTheme({
       },
     },
   },
+  MuiDrawer: {
+    styleOverrides: {
+      paper: {
+        backgroundColor: blueGrey.A700,
+      },
+    },
+  },
   MuiListItemButton: {
     styleOverrides: {
       root: {
         '&.Mui-selected': {
-          color: green.A100,
+          color: blueGrey.A100,
         },
       },
     },

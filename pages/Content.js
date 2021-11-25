@@ -1,25 +1,30 @@
-import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import Paper from '@mui/material/Paper';
-import Grid from '@mui/material/Grid';
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
-import Tooltip from '@mui/material/Tooltip';
-import IconButton from '@mui/material/IconButton';
-import SearchIcon from '@mui/icons-material/Search';
-import RefreshIcon from '@mui/icons-material/Refresh';
+import * as React from 'react'
+import AppBar from '@mui/material/AppBar'
+import Toolbar from '@mui/material/Toolbar'
+import Typography from '@mui/material/Typography'
+import Paper from '@mui/material/Paper'
+import Grid from '@mui/material/Grid'
+import Button from '@mui/material/Button'
+import TextField from '@mui/material/TextField'
+import Tooltip from '@mui/material/Tooltip'
+import IconButton from '@mui/material/IconButton'
+import SearchIcon from '@mui/icons-material/Search'
+import RefreshIcon from '@mui/icons-material/Refresh'
+import Box from '@mui/material/Box'
+import Tabs from '@mui/material/Tabs'
+import Tab from '@mui/material/Tab'
+
+import Layout from '../components/Layout'
 
 export default function Content() {
+  const [value, setValue] = React.useState(0)
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue)
+  }
   return (
-    <Paper sx={{ maxWidth: 936, margin: 'auto', overflow: 'hidden' }}>
-      <AppBar
-        position="static"
-        color="default"
-        elevation={0}
-        sx={{ borderBottom: '1px solid rgba(0, 0, 0, 0.12)' }}
-      >
+    <Layout>
+      <AppBar position="static" color="default" elevation={0} sx={{ borderBottom: '1px solid rgba(0, 0, 0, 0.12)' }}>
         <Toolbar>
           <Grid container spacing={2} alignItems="center">
             <Grid item>
@@ -52,6 +57,14 @@ export default function Content() {
       <Typography sx={{ my: 5, mx: 2 }} color="text.secondary" align="center">
         No users for this project yet
       </Typography>
-    </Paper>
-  );
+
+      <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+        <Tabs onChange={handleChange} aria-label="lab API tabs example">
+          <Tab label="Item One" value="1" />
+          <Tab label="Item Two" value="2" />
+          <Tab label="Item Three" value="3" />
+        </Tabs>
+      </Box>
+    </Layout>
+  )
 }

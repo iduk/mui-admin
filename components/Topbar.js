@@ -29,11 +29,7 @@ function Topbar(props) {
 
   return (
     <>
-      <AppBar
-        elevation="0"
-        sx={{ bgcolor: '#fff', color: 'black', height: 56, justifyContent: 'center' }}
-        position="static"
-      >
+      <AppBar color="secondary" elevation="0" sx={{ height: 56, justifyContent: 'center' }} position="static">
         <Toolbar>
           <IconButton size="large" edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
             <SportsKabaddiIcon />

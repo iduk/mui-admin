@@ -12,23 +12,22 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
 import Typography from '@mui/material/Typography'
 import Container from '@mui/material/Container'
 import { createTheme } from '@mui/material/styles'
+import { blueGrey, grey } from '@mui/material/colors'
 
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
+      <Link color="inherit" href="https://vitamate.co.kr" target="_blank">
+        https://vitamate.co.kr
+      </Link>
     </Typography>
   )
 }
 
 const theme = createTheme()
 
-export default function SignIn() {
+export default function Login() {
   const handleSubmit = (event) => {
     event.preventDefault()
     const data = new FormData(event.currentTarget)
@@ -40,62 +39,64 @@ export default function SignIn() {
   }
 
   return (
-    <Container component="main" maxWidth="xs">
+    <Box component="main">
       <CssBaseline />
-      <Box
+      <Container
+        maxWidth="xs"
         sx={{
-          marginTop: 8,
+          marginTop: 12,
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
         }}
       >
-        <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-          <LockOutlinedIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          Sign in
-        </Typography>
+        <Box sx={{ my: 3, width: '100%' }}>
+          <div>
+            <img src="logo.svg" width="100px" alt="logo" />
+          </div>
+          <Typography variant="h4" c sx={{ py: 1, textTransform: 'uppercase' }}>
+            Admin Login
+          </Typography>
+        </Box>
         <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
           <TextField
-            margin="normal"
+            margin="dense"
+            label={'아이디'}
+            id="userid"
+            name="userid"
+            type="text"
             required
             fullWidth
-            id="email"
-            label="Email Address"
-            name="email"
-            autoComplete="email"
+            autoComplete
             autoFocus
           />
           <TextField
             margin="normal"
+            label="비밀번호"
             required
             fullWidth
             name="password"
-            label="Password"
             type="password"
             id="password"
             autoComplete="current-password"
           />
-          <FormControlLabel control={<Checkbox value="remember" color="primary" />} label="Remember me" />
-          <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
-            Sign In
+          <FormControlLabel control={<Checkbox value="remember" color="primary" />} label="아이디 저장" />
+          <Button href="/" type="submit" fullWidth variant="contained" sx={{ py: 1.5, mt: 1 }}>
+            <Typography variant="h6">로그인</Typography>
+          </Button>
+          <Button type="submit" fullWidth variant="text" sx={{ py: 1.5, my: 2 }}>
+            <Typography variant="body2">관리자 등록</Typography>
           </Button>
           <Grid container>
-            <Grid item xs>
+            <Grid item xs textAlign="right">
               <Link href="#" variant="body2">
-                Forgot password?
-              </Link>
-            </Grid>
-            <Grid item>
-              <Link href="#" variant="body2">
-                {"Don't have an account? Sign Up"}
+                비밀번호찾기
               </Link>
             </Grid>
           </Grid>
         </Box>
-      </Box>
+      </Container>
       <Copyright sx={{ mt: 8, mb: 4 }} />
-    </Container>
+    </Box>
   )
 }

@@ -72,7 +72,7 @@ export default function Navigator(props) {
           <b>VITAMATE</b>
         </ListItem>
         {categories.map(({ id, children }) => (
-          <Box key={id} sx={{ bgcolor: '#101F33' }}>
+          <Box key={id}>
             <ListItem sx={{ py: 2, px: 3 }}>
               <ListItemText>{id}</ListItemText>
             </ListItem>
