@@ -36,10 +36,10 @@ const categories = [
 const item = {
   py: 0.5,
   px: 2,
-  color: 'rgba(255, 255, 255, 0.7)',
-  '&:hover, &:focus': {
-    bgcolor: 'rgba(255, 255, 255, 0.08)',
-  },
+  // color: 'rgba(255, 255, 255, 0.7)',
+  // '&:hover, &:focus': {
+  //   bgcolor: 'rgba(255, 255, 255, 0.08)',
+  // },
 }
 
 const itemCategory = {
@@ -60,7 +60,7 @@ export default function Navigator(props) {
 
   return (
     <Drawer variant="permanent" {...other}>
-      <List disablePadding sx={{ color: '#fff' }}>
+      <List disablePadding>
         <ListItem sx={{ ...item, ...itemCategory, justifyContent: 'center' }}>
           <Link href="/" sx={{ textDecoration: 'none', fontWeight: 'bold', fontSize: 22 }}>
             VITAMATE
@@ -69,7 +69,7 @@ export default function Navigator(props) {
         {categories.map(({ id, icon, children }) => (
           <Box key={id}>
             <ListItemButton onClick={handleClick} sx={{ py: 1.5 }}>
-              <ListItemIcon sx={{ color: '#fff', minWidth: 24 }}>{icon}</ListItemIcon>
+              <ListItemIcon sx={{ minWidth: 24 }}>{icon}</ListItemIcon>
               <ListItemText primary={id} sx={{ pl: 2 }} />
               {open ? <ExpandLess /> : <ExpandMore />}
             </ListItemButton>
@@ -77,7 +77,7 @@ export default function Navigator(props) {
             {children.map(({ id: childId, active }) => (
               <Collapse in={open} timeout="auto" unmountOnExit key={childId}>
                 <ListItem disablePadding>
-                  <ListItemButton selected={active} sx={{ ...item, color: '#fff' }}>
+                  <ListItemButton selected={active} sx={{ ...item }}>
                     <ListItemText primary={childId} sx={{ pl: 2 }} />
                   </ListItemButton>
                 </ListItem>

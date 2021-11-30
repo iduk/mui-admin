@@ -13,9 +13,9 @@ const theme = createTheme({
     secondary: {
       main: '#323c4a',
     },
-    background: {
-      default: '#111111',
-    },
+    // background: {
+    //   default: '#111111',
+    // },
   },
   typography: {
     fontFamily: [

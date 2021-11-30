@@ -11,7 +11,9 @@ import Paper from '@mui/material/Paper'
 import Breadcrumbs from '@mui/material/Breadcrumbs'
 import Grid from '@mui/material/Grid'
 import Container from '@mui/material/Container'
+import Button from '@mui/material/Button'
 import { maxWidth } from '@mui/system'
+import Stack from '@mui/material/Stack'
 
 function Copyright() {
   return (
@@ -19,7 +21,7 @@ function Copyright() {
       {'Copyright © '}
       <Link color="inherit" href="#">
         Your Website
-      </Link>{' '}
+      </Link>
       {new Date().getFullYear()}.
     </Typography>
   )
@@ -39,21 +41,31 @@ export default function Index({ children }) {
       <CssBaseline />
       <Box component="nav" sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}>
         <Navigator PaperProps={{ style: { width: drawerWidth } }} open={mobileOpen} onClose={handleDrawerToggle} />
-
         <Navigator PaperProps={{ style: { width: drawerWidth } }} sx={{ display: { sm: 'block', xs: 'none' } }} />
       </Box>
-
       <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
         <Topbar onDrawerToggle={handleDrawerToggle} />
 
-        <Container component="main" bgColor="white" sx={{ flex: 1, p: 4 }}>
-          <Paper elevation={0} sx={{ mx: 'auto' }}>
-            <Typography variant={'h4'} sx={{ mb: 2, fontWeight: 'bold' }}>
-              페이쥐스어타이를
-            </Typography>
-          </Paper>
+        <Container maxWidth={'xl'} component="main" sx={{ flex: 1, p: 2 }}>
+          <Grid container spacing={2} sx={{ py: 5 }}>
+            <Grid item md={6}>
+              <Typography variant={'h4'} sx={{ mb: 2, fontWeight: 'bold' }}>
+                현재 페이쥐스어타이를
+              </Typography>
+            </Grid>
+            <Grid item md={6} sx={{ textAlign: 'right' }}>
+              <Stack spacing={2} direction="row">
+                <Button variant="outlined">
+                  <Typography>전체액션버튼</Typography>
+                </Button>
+                <Button variant="outlined">
+                  <Typography>전체액션버튼</Typography>
+                </Button>
+              </Stack>
+            </Grid>
+          </Grid>
 
-          <Paper elevation={0} sx={{ p: 4 }}>
+          <Paper elevation={1} sx={{ p: 4 }}>
             {children}
           </Paper>
         </Container>
