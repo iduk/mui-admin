@@ -89,15 +89,16 @@ function PanelContent() {
     <div>
       <Grid container spacing={4}>
         <Grid item md={8}>
-          <Paper elevation={2} sx={{ p: 2 }}>
+          <Paper elevation={1} sx={{ p: 3 }}>
             <Box
               sx={{
                 '& .MuiTextField-root': { minWidth: '160px' },
                 alignItems: 'center',
+                mt: 1,
                 mb: 2,
               }}
             >
-              <Stack spacing={1} direction="row">
+              <Stack spacing={2} direction="row">
                 <TextField
                   id="date"
                   label="상담기간"
