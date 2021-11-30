@@ -1,5 +1,5 @@
 import * as React from 'react'
-import Paper from '@mui/material/Paper'
+
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
 import TableCell from '@mui/material/TableCell'
@@ -9,26 +9,26 @@ import TablePagination from '@mui/material/TablePagination'
 import TableRow from '@mui/material/TableRow'
 
 const columns = [
-  { id: 'name', label: 'Name', minWidth: 170 },
-  { id: 'code', label: 'ISO\u00a0Code', minWidth: 100 },
+  { id: 'name', label: 'Name', minWidth: 120 },
+  { id: 'code', label: 'ISO\u00a0Code', minWidth: 80 },
   {
     id: 'population',
     label: 'Population',
-    minWidth: 170,
+    minWidth: 120,
     align: 'right',
     format: (value) => value.toLocaleString('en-US'),
   },
   {
     id: 'size',
     label: 'Size\u00a0(km\u00b2)',
-    minWidth: 170,
+    minWidth: 80,
     align: 'right',
     format: (value) => value.toLocaleString('en-US'),
   },
   {
     id: 'density',
     label: 'Density',
-    minWidth: 170,
+    minWidth: 80,
     align: 'right',
     format: (value) => value.toFixed(2),
   },
@@ -71,7 +71,7 @@ export default function StickyHeadTable() {
   }
 
   return (
-    <Paper sx={{ width: '100%', overflow: 'hidden' }}>
+    <>
       <TableContainer sx={{ maxHeight: 600 }}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
@@ -110,6 +110,6 @@ export default function StickyHeadTable() {
         onPageChange={handleChangePage}
         onRowsPerPageChange={handleChangeRowsPerPage}
       />
-    </Paper>
+    </>
   )
 }

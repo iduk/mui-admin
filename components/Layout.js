@@ -59,7 +59,7 @@ export default function Index({ children }) {
       <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
         <Topbar onDrawerToggle={handleDrawerToggle} />
 
-        <Container maxWidth={'xl'} component="main" sx={{ flex: 1, p: 2 }}>
+        <Container component="main" sx={{ flex: 1 }}>
           <Grid container spacing={2} sx={{ py: 5 }}>
             <Grid item md={6}>
               <Typography variant={'h4'} sx={{ mb: 2, fontWeight: 'bold' }}>

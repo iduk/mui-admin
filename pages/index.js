@@ -1,33 +1,46 @@
 import * as React from 'react'
-import Paper from '@mui/material/Paper'
-import Layout from '../components/Layout'
-import Button from '@mui/material/Button'
 import PropTypes from 'prop-types'
-import Tabs from '@mui/material/Tabs'
-import Tab from '@mui/material/Tab'
-import Typography from '@mui/material/Typography'
-import Box from '@mui/material/Box'
-import Grid from '@mui/material/Grid'
 import theme from '../theme'
+import Layout from '../components/Layout'
 import DataTable from '../components/DataTable'
 import { styled } from '@mui/material/styles'
+import {
+  Paper,
+  Button,
+  Tabs,
+  Tab,
+  Typography,
+  Box,
+  Grid,
+  TextField,
+  MenuItem,
+  Stack,
+  FormControl,
+  Select,
+  InputLabel,
+} from '@mui/material'
 
 export default function Index() {
   const [value, setValue] = React.useState(0)
 
-  const handleChange = (event, newValue) => {
+  const handleChangeTab = (event, newValue) => {
     setValue(newValue)
   }
 
   return (
     <Layout>
       {/* Tabs */}
-      <Box sx={{ width: '100%' }}>
+      <Box sx={{ width: '100%', flexShrink: 1 }}>
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-          <Tabs value={value} onChange={handleChange} aria-label="기본탭">
-            <Tab label="기본 아이템 원" {...a11yProps(0)} />
-            <Tab label="기본 아이템 투" {...a11yProps(1)} />
-            <Tab label="기본 아이템 뜨리" {...a11yProps(2)} />
+          <Tabs value={value} onChange={handleChangeTab} aria-label="기본탭">
+            <Tab label="상담내역" {...a11yProps(0)} />
+            <Tab label="구독 및 약정" {...a11yProps(1)} />
+            <Tab label="결제" {...a11yProps(2)} />
+            <Tab label="추천인" {...a11yProps(3)} />
+            <Tab label="등급이력" {...a11yProps(4)} />
+            <Tab label="포인트" {...a11yProps(5)} />
+            <Tab label="알림" {...a11yProps(6)} />
+            <Tab label="배송" {...a11yProps(7)} />
           </Tabs>
         </Box>
         <Box sx={{ py: 2 }}>
@@ -35,10 +48,19 @@ export default function Index() {
             <PanelContent />
           </TabPanel>
           <TabPanel value={value} index={1}>
-            Item Two
+            아휴...
           </TabPanel>
           <TabPanel value={value} index={2}>
-            Item Three
+            에혀.......
+          </TabPanel>
+          <TabPanel value={value} index={3}>
+            징글징글.....
+          </TabPanel>
+          <TabPanel value={value} index={4}>
+            돼따 뒈써..
+          </TabPanel>
+          <TabPanel value={value} index={5}>
+            말해모혀
           </TabPanel>
         </Box>
       </Box>
@@ -47,21 +69,107 @@ export default function Index() {
 }
 
 function PanelContent() {
+  const [option, setOption] = React.useState('a')
+
+  const handleChangeSelect = (e) => {
+    setOption(e.target.value)
+  }
+  const options = [
+    {
+      value: 'a',
+      label: '전체',
+    },
+    {
+      value: 'b',
+      label: '라ㅏ라라라라랄',
+    },
+  ]
+
   return (
     <div>
       <Grid container spacing={4}>
-        <Grid item md="8">
-          <Typography variant="headline" component="h2">
-            테이블 제목
-          </Typography>
-          <Paper elevation={1}>
+        <Grid item md={8}>
+          <Paper elevation={2} sx={{ p: 2 }}>
+            <Box
+              sx={{
+                '& .MuiTextField-root': { minWidth: '160px' },
+                alignItems: 'center',
+                mb: 2,
+              }}
+            >
+              <Stack spacing={1} direction="row">
+                <TextField
+                  id="date"
+                  label="상담기간"
+                  type="date"
+                  defaultValue="2020-01-01"
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                  size="small"
+                  sx={{ minWidth: 160 }}
+                />
+                <TextField
+                  id="date"
+                  label="상담기간"
+                  type="date"
+                  defaultValue="2020-12-01"
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                  size="small"
+                  sx={{ minWidth: 160 }}
+                />
+                <FormControl sx={{ minWidth: 100 }}>
+                  <InputLabel id="demo-simple-select-autowidth-label">상담사유</InputLabel>
+                  <Select
+                    labelId="demo-simple-select-autowidth-label"
+                    id="demo-simple-select-autowidth"
+                    value={option}
+                    onChange={handleChangeSelect}
+                    autoWidth
+                    label="상담사유"
+                    size="small"
+                  >
+                    {options.map((option) => (
+                      <MenuItem key={option.value} value={option.value}>
+                        {option.label}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+
+                <FormControl sx={{ minWidth: 100 }}>
+                  <InputLabel id="demo-simple-select-autowidth-label">상담결과</InputLabel>
+                  <Select
+                    labelId="demo-simple-select-autowidth-label"
+                    id="demo-simple-select-autowidth"
+                    value={option}
+                    onChange={handleChangeSelect}
+                    autoWidth
+                    label="상담결과"
+                    size="small"
+                  >
+                    {options.map((option) => (
+                      <MenuItem key={option.value} value={option.value}>
+                        {option.label}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+
+                <Button variant="outlined">검색</Button>
+              </Stack>
+            </Box>
             <DataTable />
           </Paper>
+          {/* searching form */}
         </Grid>
-        <Grid item md="4">
-          <Typography variant="headline" component="h2">
-            상담 내용
-          </Typography>
+
+        <Grid item md={4}>
+          <Paper elevation={2} sx={{ height: '100%' }}>
+            asdf
+          </Paper>
         </Grid>
       </Grid>
     </div>

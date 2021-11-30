@@ -19,6 +19,7 @@ const appbarStyle = {
   boxShadow: '0 -1px 0 rgb(255,255,255,0.2) inset',
   height: 60,
   justifyContent: 'center',
+  borderRadius: 0,
 }
 
 function Topbar(props) {

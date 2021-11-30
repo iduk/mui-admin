@@ -22,7 +22,7 @@ const theme = createTheme({
   },
   typography: {
     fontFamily: [
-      'Nunito',
+      'Rubik',
       'Noto Sans KR',
       '-apple-system',
       'BlinkMacSystemFont',
@@ -36,7 +36,6 @@ const theme = createTheme({
     ].join(','),
     body1: {
       fontSize: 14,
-      letterSpacing: '-0.4px',
       lineHeight: 'normal',
     },
     h6: {
@@ -48,6 +47,21 @@ const theme = createTheme({
   },
 
   components: {
+    MuiPaper: {
+      styleOverrides: {
+        root: {
+          borderRadius: 8,
+        },
+      },
+    },
+    MuiTable: {
+      styleOverrides: {
+        root: {
+          backgroundColor: 'transparent',
+          borderRadius: 0,
+        },
+      },
+    },
     MuiButton: {
       styleOverrides: {
         root: {
@@ -107,13 +121,6 @@ const theme = createTheme({
       },
     },
   },
-  MuiDrawer: {
-    styleOverrides: {
-      paper: {
-        backgroundColor: blueGrey.A700,
-      },
-    },
-  },
   MuiListItemButton: {
     styleOverrides: {
       root: {
@@ -146,6 +153,27 @@ const theme = createTheme({
   mixins: {
     toolbar: {
       minHeight: 48,
+    },
+  },
+  MuiIconButton: {
+    styleOverrides: {
+      sizeMedium: {
+        color: 'inherit',
+      },
+    },
+  },
+  MuiOutlinedInput: {
+    styleOverrides: {
+      root: {
+        color: 'inherit',
+      },
+    },
+  },
+  MuiInputLabel: {
+    styleOverrides: {
+      root: {
+        color: 'inherit',
+      },
     },
   },
 })
