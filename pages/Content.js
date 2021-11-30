@@ -11,9 +11,6 @@ import IconButton from '@mui/material/IconButton'
 import SearchIcon from '@mui/icons-material/Search'
 import RefreshIcon from '@mui/icons-material/Refresh'
 import Box from '@mui/material/Box'
-import Tabs from '@mui/material/Tabs'
-import Tab from '@mui/material/Tab'
-
 import Layout from '../components/Layout'
 
 export default function Content() {
@@ -58,13 +55,7 @@ export default function Content() {
         No users for this project yet
       </Typography>
 
-      <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-        <Tabs onChange={handleChange} aria-label="lab API tabs example">
-          <Tab label="Item One" value="1" />
-          <Tab label="Item Two" value="2" />
-          <Tab label="Item Three" value="3" />
-        </Tabs>
-      </Box>
+      <Box sx={{ borderBottom: 1, borderColor: 'divider' }}></Box>
     </Layout>
   )
 }

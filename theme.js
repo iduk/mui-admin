@@ -7,7 +7,8 @@ const theme = createTheme({
   palette: {
     mode: 'dark',
     primary: {
-      main: teal.A400,
+      // BrandColor = #5cbbbb
+      main: '#41d6d6',
     },
     secondary: {
       main: '#323c4a',
@@ -34,6 +35,9 @@ const theme = createTheme({
       fontSize: 14,
       letterSpacing: '-0.4px',
       lineHeight: 'normal',
+    },
+    h6: {
+      fontSize: 18,
     },
   },
   shape: {
@@ -65,6 +69,24 @@ const theme = createTheme({
     MuiTab: {
       defaultProps: {
         disableRipple: true,
+      },
+      styleOverrides: {
+        root: {
+          textTransform: 'none',
+
+          paddingTop: '1rem',
+          paddingBottom: '1rem',
+
+          // '& .MuiTabs-indicator': {
+          //   position: 'absolute',
+          //   width: '100%',
+          //   height: '2px',
+          //   left: '9px !important',
+          //   right: '9px !important',
+          //   bottom: 0,
+          //   backgroundColor: palette.primary,
+          // },
+        },
       },
     },
   },

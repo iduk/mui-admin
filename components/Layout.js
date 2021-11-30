@@ -8,6 +8,10 @@ import Link from '@mui/material/Link'
 import Navigator from '../components/Navigator'
 import Topbar from '../components/Topbar'
 import Paper from '@mui/material/Paper'
+import Breadcrumbs from '@mui/material/Breadcrumbs'
+import Grid from '@mui/material/Grid'
+import Container from '@mui/material/Container'
+import { maxWidth } from '@mui/system'
 
 function Copyright() {
   return (
@@ -38,17 +42,21 @@ export default function Index({ children }) {
 
         <Navigator PaperProps={{ style: { width: drawerWidth } }} sx={{ display: { sm: 'block', xs: 'none' } }} />
       </Box>
+
       <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
         <Topbar onDrawerToggle={handleDrawerToggle} />
-        <Box component="main" sx={{ flex: 1, py: 6, px: 4, borderWidth: 1 }}>
-          <Paper
-            elevation={1}
-            variant="outlined"
-            sx={{ padding: 3, height: '100%', display: 'grid', gridTemplateColumns: '1fr', gap: 2 }}
-          >
+
+        <Container component="main" bgColor="white" sx={{ flex: 1, p: 4 }}>
+          <Paper elevation={0} sx={{ mx: 'auto' }}>
+            <Typography variant={'h4'} sx={{ mb: 2, fontWeight: 'bold' }}>
+              페이쥐스어타이를
+            </Typography>
+          </Paper>
+
+          <Paper elevation={0} sx={{ p: 4 }}>
             {children}
           </Paper>
-        </Box>
+        </Container>
       </Box>
     </Box>
   )

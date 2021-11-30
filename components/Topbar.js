@@ -12,8 +12,14 @@ import MenuIcon from '@mui/icons-material/Menu'
 import SportsKabaddiIcon from '@mui/icons-material/SportsKabaddi'
 import AccountCircle from '@mui/icons-material/AccountCircle'
 import LogoutIcon from '@mui/icons-material/Logout'
+// import NavTabs from './NavTabs'
+import BreadCrumb from './BreadCrumb'
 
-const lightColor = 'rgba(255, 255, 255, 0.7)'
+const appbarStyle = {
+  boxShadow: '0 -1px 0 rgb(255,255,255,0.2) inset',
+  height: 60,
+  justifyContent: 'center',
+}
 
 function Topbar(props) {
   const { onDrawerToggle } = props
@@ -29,15 +35,13 @@ function Topbar(props) {
 
   return (
     <>
-      <AppBar color="secondary" elevation="0" sx={{ height: 56, justifyContent: 'center' }} position="static">
+      <AppBar sx={{ ...appbarStyle }} elevation={0} position="static">
         <Toolbar>
-          <IconButton size="large" edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
-            <SportsKabaddiIcon />
-          </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            <span name="mberNm">{'멤버명'}</span>
+            {/* 하위탭이 상단에 있을때 */}
+            {/* <NavTabs /> */}
+            <BreadCrumb />
           </Typography>
-
           <IconButton
             size="large"
             aria-label="account of current user"
@@ -73,7 +77,7 @@ function Topbar(props) {
             aria-controls="menu-appbar"
             aria-haspopup="true"
             color="inherit"
-            sx={{ ml: 2 }}
+            sx={{ ml: 1 }}
           >
             <LogoutIcon />
           </IconButton>

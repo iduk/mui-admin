@@ -1,4 +1,5 @@
-import * as React from 'react'
+/* eslint-disable @next/next/no-img-element */
+import { useState } from 'react'
 import Avatar from '@mui/material/Avatar'
 import Button from '@mui/material/Button'
 import CssBaseline from '@mui/material/CssBaseline'
@@ -13,6 +14,7 @@ import Typography from '@mui/material/Typography'
 import Container from '@mui/material/Container'
 import { createTheme } from '@mui/material/styles'
 import { blueGrey, grey } from '@mui/material/colors'
+import Paper from '@mui/material/Paper'
 
 function Copyright(props) {
   return (
@@ -28,6 +30,44 @@ function Copyright(props) {
 const theme = createTheme()
 
 export default function Login() {
+  const [values, setValues] = useState([
+    {
+      id: 'adminId',
+      label: '아이디 입력',
+      type: 'text',
+      autoComplate: 'current-id',
+      required: true,
+    },
+    {
+      id: 'adminPw',
+      label: '비밀번호 입력',
+      type: 'password',
+      autoComplate: 'current-pw',
+      required: true,
+    },
+    {
+      id: 'adminPwRe',
+      label: '비밀번호 재입력',
+      type: 'password',
+      autoComplate: 'current-pwre',
+      required: true,
+    },
+    {
+      id: 'adminEmail',
+      label: '이메일 입력',
+      type: 'email',
+      autoComplate: 'current-email',
+      required: true,
+    },
+    {
+      id: 'adminTel',
+      label: '연락처',
+      type: 'text',
+      autoComplate: 'current-tel',
+      required: true,
+    },
+  ])
+
   const handleSubmit = (event) => {
     event.preventDefault()
     const data = new FormData(event.currentTarget)
@@ -52,48 +92,35 @@ export default function Login() {
       >
         <Box sx={{ my: 3, width: '100%' }}>
           <div>
-            <img src="logo.svg" width="100px" alt="logo" />
+            <img src="logo.svg" height={20} alt="logo" />
           </div>
           <Typography variant="h4" c sx={{ py: 1, textTransform: 'uppercase' }}>
-            Admin Login
+            Admin Signup
           </Typography>
         </Box>
+
         <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-          <TextField
-            margin="dense"
-            label={'아이디'}
-            id="userid"
-            name="userid"
-            type="text"
-            required
-            fullWidth
-            autoComplete
-            autoFocus
-          />
-          <TextField
-            margin="normal"
-            label="비밀번호"
-            required
-            fullWidth
-            name="password"
-            type="password"
-            id="password"
-            autoComplete="current-password"
-          />
-          <FormControlLabel control={<Checkbox value="remember" color="primary" />} label="아이디 저장" />
-          <Button href="/" type="submit" fullWidth variant="contained" sx={{ py: 1.5, mt: 1 }}>
-            <Typography variant="h6">로그인</Typography>
-          </Button>
-          <Button type="submit" fullWidth variant="text" sx={{ py: 1.5, my: 2 }}>
-            <Typography variant="body2">관리자 등록</Typography>
-          </Button>
-          <Grid container>
-            <Grid item xs textAlign="right">
-              <Link href="#" variant="body2">
-                비밀번호찾기
-              </Link>
+          <Grid container spacing={2}>
+            <Grid item md={12}>
+              <TextField label={values[0].label} fullWidth />
+            </Grid>
+            <Grid item md={6}>
+              <TextField label={values[1].label} fullWidth />
+            </Grid>
+            <Grid item md={6}>
+              <TextField label={values[2].label} fullWidth />
+            </Grid>
+            <Grid item md={12}>
+              <TextField label={values[3].label} fullWidth />
+            </Grid>
+            <Grid item md={12}>
+              <TextField label={values[4].label} fullWidth />
             </Grid>
           </Grid>
+
+          <Button href="/" type="submit" fullWidth variant="contained" sx={{ py: 1.5, mt: 2 }}>
+            <Typography variant="h6">등록 완료</Typography>
+          </Button>
         </Box>
       </Container>
       <Copyright sx={{ mt: 8, mb: 4 }} />
