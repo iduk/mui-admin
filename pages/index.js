@@ -1,29 +1,19 @@
 import * as React from 'react'
+import Paper from '@mui/material/Paper'
 import Layout from '../components/Layout'
 import Button from '@mui/material/Button'
-import AlertDialog from '../components/AlertDialog'
-import DialogActions from '@mui/material/DialogActions'
-import DialogContent from '@mui/material/DialogContent'
-import DialogContentText from '@mui/material/DialogContentText'
-import DialogTitle from '@mui/material/DialogTitle'
 import PropTypes from 'prop-types'
 import Tabs from '@mui/material/Tabs'
 import Tab from '@mui/material/Tab'
 import Typography from '@mui/material/Typography'
 import Box from '@mui/material/Box'
+import Grid from '@mui/material/Grid'
 import theme from '../theme'
+import DataTable from '../components/DataTable'
 import { styled } from '@mui/material/styles'
 
 export default function Index() {
-  const [open, setOpen] = React.useState(false)
   const [value, setValue] = React.useState(0)
-
-  const handleClose = () => {
-    setOpen(false)
-  }
-  const handleClickOpen = () => {
-    setOpen(true)
-  }
 
   const handleChange = (event, newValue) => {
     setValue(newValue)
@@ -32,7 +22,7 @@ export default function Index() {
   return (
     <Layout>
       {/* Tabs */}
-      {/* <Box sx={{ width: '100%' }}>
+      <Box sx={{ width: '100%' }}>
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
           <Tabs value={value} onChange={handleChange} aria-label="기본탭">
             <Tab label="기본 아이템 원" {...a11yProps(0)} />
@@ -40,40 +30,41 @@ export default function Index() {
             <Tab label="기본 아이템 뜨리" {...a11yProps(2)} />
           </Tabs>
         </Box>
-        <TabPanel value={value} index={0}>
-          Item One
-        </TabPanel>
-        <TabPanel value={value} index={1}>
-          Item Two
-        </TabPanel>
-        <TabPanel value={value} index={2}>
-          Item Three
-        </TabPanel>
-      </Box> */}
-      <div>
-        <Button variant="contained" color="primary" size="large" onClick={handleClickOpen}>
-          일반팝업
-        </Button>
-
-        <AlertDialog open={open} handleClose={handleClose} maxWidth={'xs'}>
-          {/* Title */}
-          <DialogTitle id="alert-dialog-title">제목은 이렇게</DialogTitle>
-
-          {/* Content */}
-          <DialogContent>
-            <DialogContentText id="alert-dialog-description">여따가 내용</DialogContentText>
-          </DialogContent>
-
-          {/* Buttons */}
-          <DialogActions>
-            <Button onClick={handleClose}>취소</Button>
-            <Button onClick={handleClose} autoFocus>
-              확인
-            </Button>
-          </DialogActions>
-        </AlertDialog>
-      </div>
+        <Box sx={{ py: 2 }}>
+          <TabPanel value={value} index={0}>
+            <PanelContent />
+          </TabPanel>
+          <TabPanel value={value} index={1}>
+            Item Two
+          </TabPanel>
+          <TabPanel value={value} index={2}>
+            Item Three
+          </TabPanel>
+        </Box>
+      </Box>
     </Layout>
+  )
+}
+
+function PanelContent() {
+  return (
+    <div>
+      <Grid container spacing={4}>
+        <Grid item md="8">
+          <Typography variant="headline" component="h2">
+            테이블 제목
+          </Typography>
+          <Paper elevation={1}>
+            <DataTable />
+          </Paper>
+        </Grid>
+        <Grid item md="4">
+          <Typography variant="headline" component="h2">
+            상담 내용
+          </Typography>
+        </Grid>
+      </Grid>
+    </div>
   )
 }
 

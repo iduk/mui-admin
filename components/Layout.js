@@ -12,8 +12,13 @@ import Breadcrumbs from '@mui/material/Breadcrumbs'
 import Grid from '@mui/material/Grid'
 import Container from '@mui/material/Container'
 import Button from '@mui/material/Button'
-import { maxWidth } from '@mui/system'
 import Stack from '@mui/material/Stack'
+import Divider from '@mui/material/Divider'
+import AlertDialog from '../components/AlertDialog'
+import DialogActions from '@mui/material/DialogActions'
+import DialogContent from '@mui/material/DialogContent'
+import DialogContentText from '@mui/material/DialogContentText'
+import DialogTitle from '@mui/material/DialogTitle'
 
 function Copyright() {
   return (
@@ -31,6 +36,14 @@ const drawerWidth = 256
 
 export default function Index({ children }) {
   const [mobileOpen, setMobileOpen] = React.useState(false)
+  const [open, setOpen] = React.useState(false)
+
+  const handleClose = () => {
+    setOpen(false)
+  }
+  const handleClickOpen = () => {
+    setOpen(true)
+  }
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen)
@@ -53,10 +66,10 @@ export default function Index({ children }) {
                 현재 페이쥐스어타이를
               </Typography>
             </Grid>
-            <Grid item md={6} sx={{ textAlign: 'right' }}>
-              <Stack spacing={2} direction="row">
-                <Button variant="outlined">
-                  <Typography>전체액션버튼</Typography>
+            <Grid item md={6}>
+              <Stack spacing={2} direction="row" sx={{ justifyContent: 'end', alignItems: 'center' }}>
+                <Button variant="outlined" color="light" onClick={handleClickOpen}>
+                  <Typography>모달 버튼</Typography>
                 </Button>
                 <Button variant="outlined">
                   <Typography>전체액션버튼</Typography>
@@ -65,11 +78,28 @@ export default function Index({ children }) {
             </Grid>
           </Grid>
 
-          <Paper elevation={1} sx={{ p: 4 }}>
-            {children}
-          </Paper>
+          <Box>{children}</Box>
         </Container>
       </Box>
+
+      {/* dialog */}
+      <AlertDialog open={open} handleClose={handleClose} maxWidth={'xs'}>
+        {/* Title */}
+        <DialogTitle id="alert-dialog-title">제목은 이렇게</DialogTitle>
+
+        {/* Content */}
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">여따가 내용</DialogContentText>
+        </DialogContent>
+
+        {/* Buttons */}
+        <DialogActions>
+          <Button onClick={handleClose}>취소</Button>
+          <Button onClick={handleClose} autoFocus>
+            확인
+          </Button>
+        </DialogActions>
+      </AlertDialog>
     </Box>
   )
 }
