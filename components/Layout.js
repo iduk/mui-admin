@@ -1,24 +1,33 @@
 import * as React from 'react'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
-import CssBaseline from '@mui/material/CssBaseline'
-import useMediaQuery from '@mui/material/useMediaQuery'
-import Box from '@mui/material/Box'
-import Typography from '@mui/material/Typography'
-import Link from '@mui/material/Link'
 import Navigator from '../components/Navigator'
 import Topbar from '../components/Topbar'
-import Paper from '@mui/material/Paper'
-import Breadcrumbs from '@mui/material/Breadcrumbs'
-import Grid from '@mui/material/Grid'
-import Container from '@mui/material/Container'
-import Button from '@mui/material/Button'
-import Stack from '@mui/material/Stack'
-import Divider from '@mui/material/Divider'
 import AlertDialog from '../components/AlertDialog'
-import DialogActions from '@mui/material/DialogActions'
-import DialogContent from '@mui/material/DialogContent'
-import DialogContentText from '@mui/material/DialogContentText'
-import DialogTitle from '@mui/material/DialogTitle'
+import {
+  CssBaseline,
+  useMediaQuery,
+  Box,
+  Typography,
+  Link,
+  Paper,
+  Breadcrumbs,
+  Grid,
+  Container,
+  Button,
+  Stack,
+  Divider,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  TextField,
+} from '@mui/material'
+import AdapterDateFns from '@mui/lab/AdapterDateFns'
+// "LocalizationProvider" Datepicker 사용시 얘로 감싸주어야함
+import LocalizationProvider from '@mui/lab/LocalizationProvider'
+import DatePicker from '@mui/lab/DatePicker'
+import DateRangePicker from '@mui/lab/DateRangePicker'
+import SearchForm from './SearchForm'
 
 function Copyright() {
   return (
@@ -37,6 +46,7 @@ const drawerWidth = 256
 export default function Index({ children }) {
   const [mobileOpen, setMobileOpen] = React.useState(false)
   const [open, setOpen] = React.useState(false)
+  const [value, setValue] = React.useState(new Date())
 
   const handleClose = () => {
     setOpen(false)
@@ -59,24 +69,28 @@ export default function Index({ children }) {
       <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
         <Topbar onDrawerToggle={handleDrawerToggle} />
 
-        <Container component="main" sx={{ flex: 1 }}>
-          <Grid container spacing={2} sx={{ py: 5 }}>
+        <Container component="main" sx={{ flex: 1, minWidth: 'auto' }}>
+          <Grid container spacing={2} sx={{ py: 5, mb: 4 }} alignItems="center">
             <Grid item md={6}>
-              <Typography variant={'h4'} sx={{ mb: 2, fontWeight: 'bold' }}>
+              <Typography variant={'h4'} sx={{ fontWeight: 'bold' }}>
                 현재 페이쥐스어타이를
               </Typography>
             </Grid>
             <Grid item md={6}>
-              <Stack spacing={2} direction="row" sx={{ justifyContent: 'end', alignItems: 'center' }}>
-                <Button variant="outlined" color="light" onClick={handleClickOpen}>
-                  <Typography>모달 버튼</Typography>
+              <Stack spacing={1} direction="row" sx={{ justifyContent: 'end', alignItems: 'center' }}>
+                <Button variant="outlined" color="light" size="large" onClick={handleClickOpen}>
+                  모달 버튼
                 </Button>
-                <Button variant="outlined">
-                  <Typography>전체액션버튼</Typography>
+                <Button variant="contained" size="large">
+                  현재 페이지 저장
                 </Button>
               </Stack>
             </Grid>
           </Grid>
+
+          <Box>
+            <SearchForm />
+          </Box>
 
           <Box>{children}</Box>
         </Container>
@@ -89,7 +103,24 @@ export default function Index({ children }) {
 
         {/* Content */}
         <DialogContent>
-          <DialogContentText id="alert-dialog-description">여따가 내용</DialogContentText>
+          <DialogContentText id="alert-dialog-description">
+            <Stack spacing={2} sx={{ mt: 2 }}>
+              <LocalizationProvider dateAdapter={AdapterDateFns}>
+                <DatePicker
+                  label="상담일시"
+                  value={value}
+                  onChange={(newValue) => {
+                    setValue(newValue)
+                  }}
+                  renderInput={(params) => <TextField {...params} />}
+                  readOnly
+                />
+              </LocalizationProvider>
+              <TextField label="상담사유" />
+              <TextField label="상담결과" />
+              <TextField label="상담내용" multiline rows={8} />
+            </Stack>
+          </DialogContentText>
         </DialogContent>
 
         {/* Buttons */}

@@ -1,4 +1,4 @@
-import { blueGrey, teal } from '@mui/material/colors'
+import { blueGrey, grey, teal } from '@mui/material/colors'
 import { createTheme } from '@mui/material/styles'
 import { palette, spacing, typography } from '@mui/system'
 
@@ -16,9 +16,9 @@ const theme = createTheme({
     light: {
       main: '#eee',
     },
-    // background: {
-    //   default: '#111111',
-    // },
+    info: {
+      main: grey[600],
+    },
   },
   typography: {
     fontFamily: [
@@ -38,8 +38,12 @@ const theme = createTheme({
       fontSize: 14,
       lineHeight: 'normal',
     },
+    body2: {
+      lineHeight: 'normal',
+    },
     h6: {
       fontSize: 18,
+      fontWeight: 'bold',
     },
   },
   shape: {
@@ -50,7 +54,7 @@ const theme = createTheme({
     MuiPaper: {
       styleOverrides: {
         root: {
-          borderRadius: 8,
+          borderRadius: 0,
         },
       },
     },
@@ -66,6 +70,7 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           textTransform: 'none',
+          lineHeight: 1.5,
         },
         contained: {
           boxShadow: 'none',
@@ -82,7 +87,19 @@ const theme = createTheme({
       styleOverrides: {
         borderRadius: 2,
       },
+      defaultProps: {
+        variant: 'outlined',
+      },
     },
+    MuiSelect: {
+      styleOverrides: {
+        borderRadius: 2,
+      },
+      defaultProps: {
+        variant: 'outlined',
+      },
+    },
+
     MuiTab: {
       defaultProps: {
         disableRipple: true,
@@ -124,9 +141,7 @@ const theme = createTheme({
   MuiListItemButton: {
     styleOverrides: {
       root: {
-        '&.Mui-selected': {
-          color: blueGrey.A100,
-        },
+        //
       },
     },
   },

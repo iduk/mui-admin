@@ -66,6 +66,7 @@ export default function Login() {
             id="userid"
             name="userid"
             type="text"
+            variant="outlined"
             required
             fullWidth
             autoComplete

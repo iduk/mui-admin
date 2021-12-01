@@ -49,6 +49,8 @@ const itemCategory = {
   px: 0,
 }
 
+const drawerWidth = 255
+
 export default function Navigator(props) {
   const { ...other } = props
 
@@ -59,7 +61,7 @@ export default function Navigator(props) {
   }
 
   return (
-    <Drawer variant="permanent" {...other}>
+    <Drawer variant="permanent" sx={{ width: drawerWidth }} {...other}>
       <List disablePadding>
         <ListItem sx={{ ...item, ...itemCategory, justifyContent: 'center' }}>
           <Link href="/" sx={{ textDecoration: 'none', fontWeight: 'bold', fontSize: 22 }}>

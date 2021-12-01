@@ -18,7 +18,16 @@ import {
   FormControl,
   Select,
   InputLabel,
+  FormLabel,
+  Container,
+  TextareaAutosize,
 } from '@mui/material'
+import AdapterDateFns from '@mui/lab/AdapterDateFns'
+// "LocalizationProvider" Datepicker 사용시 얘로 감싸주어야함
+import LocalizationProvider from '@mui/lab/LocalizationProvider'
+import DatePicker from '@mui/lab/DatePicker'
+import DateRangePicker from '@mui/lab/DateRangePicker'
+import { grey } from '@mui/material/colors'
 
 export default function Index() {
   const [value, setValue] = React.useState(0)
@@ -30,7 +39,7 @@ export default function Index() {
   return (
     <Layout>
       {/* Tabs */}
-      <Box sx={{ width: '100%', flexShrink: 1 }}>
+      <Box sx={{ width: '100%' }}>
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
           <Tabs value={value} onChange={handleChangeTab} aria-label="기본탭">
             <Tab label="상담내역" {...a11yProps(0)} />
@@ -70,6 +79,7 @@ export default function Index() {
 
 function PanelContent() {
   const [option, setOption] = React.useState('a')
+  const [value, setValue] = React.useState(new Date())
 
   const handleChangeSelect = (e) => {
     setOption(e.target.value)
@@ -88,88 +98,111 @@ function PanelContent() {
   return (
     <div>
       <Grid container spacing={4}>
-        <Grid item md={8}>
+        <Grid item md={9}>
           <Paper elevation={1} sx={{ p: 3 }}>
             <Box
               sx={{
-                '& .MuiTextField-root': { minWidth: '160px' },
+                '& .MuiTextField-root': { minWidth: 'auto' },
                 alignItems: 'center',
-                mt: 1,
                 mb: 2,
               }}
             >
-              <Stack spacing={2} direction="row">
-                <TextField
-                  id="date"
-                  label="상담기간"
-                  type="date"
-                  defaultValue="2020-01-01"
-                  InputLabelProps={{
-                    shrink: true,
-                  }}
-                  size="small"
-                  sx={{ minWidth: 160 }}
-                />
-                <TextField
-                  id="date"
-                  label="상담기간"
-                  type="date"
-                  defaultValue="2020-12-01"
-                  InputLabelProps={{
-                    shrink: true,
-                  }}
-                  size="small"
-                  sx={{ minWidth: 160 }}
-                />
-                <FormControl sx={{ minWidth: 100 }}>
-                  <InputLabel id="demo-simple-select-autowidth-label">상담사유</InputLabel>
-                  <Select
-                    labelId="demo-simple-select-autowidth-label"
-                    id="demo-simple-select-autowidth"
-                    value={option}
-                    onChange={handleChangeSelect}
-                    autoWidth
-                    label="상담사유"
-                    size="small"
-                  >
-                    {options.map((option) => (
-                      <MenuItem key={option.value} value={option.value}>
-                        {option.label}
-                      </MenuItem>
-                    ))}
-                  </Select>
-                </FormControl>
-
-                <FormControl sx={{ minWidth: 100 }}>
-                  <InputLabel id="demo-simple-select-autowidth-label">상담결과</InputLabel>
-                  <Select
-                    labelId="demo-simple-select-autowidth-label"
-                    id="demo-simple-select-autowidth"
-                    value={option}
-                    onChange={handleChangeSelect}
-                    autoWidth
-                    label="상담결과"
-                    size="small"
-                  >
-                    {options.map((option) => (
-                      <MenuItem key={option.value} value={option.value}>
-                        {option.label}
-                      </MenuItem>
-                    ))}
-                  </Select>
-                </FormControl>
-
-                <Button variant="outlined">검색</Button>
-              </Stack>
+              <Grid spacing={2} container alignItems="center">
+                <Grid item md={3}>
+                  <LocalizationProvider dateAdapter={AdapterDateFns}>
+                    <DatePicker
+                      label="상담기간"
+                      value={value}
+                      onChange={(newValue) => {
+                        setValue(newValue)
+                      }}
+                      renderInput={(params) => <TextField {...params} />}
+                    />
+                  </LocalizationProvider>
+                </Grid>
+                <Grid item md={3}>
+                  <LocalizationProvider dateAdapter={AdapterDateFns}>
+                    <DatePicker
+                      value={value}
+                      onChange={(newValue) => {
+                        setValue(newValue)
+                      }}
+                      renderInput={(params) => <TextField {...params} />}
+                    />
+                  </LocalizationProvider>
+                </Grid>
+                <Grid item md={2}>
+                  <FormControl fullWidth>
+                    <InputLabel id="select1">상담사유</InputLabel>
+                    <Select
+                      labelId="select1-label"
+                      id="select1"
+                      value={option}
+                      onChange={handleChangeSelect}
+                      autoWidth
+                      label="상담사유"
+                    >
+                      {options.map((option) => (
+                        <MenuItem key={option.value} value={option.value}>
+                          {option.label}
+                        </MenuItem>
+                      ))}
+                    </Select>
+                  </FormControl>
+                </Grid>
+                <Grid item md={2}>
+                  <FormControl fullWidth>
+                    <InputLabel id="select2">상담결과</InputLabel>
+                    <Select
+                      labelId="select2-label"
+                      id="select2"
+                      value={option}
+                      onChange={handleChangeSelect}
+                      autoWidth
+                      label="상담결과"
+                    >
+                      {options.map((option) => (
+                        <MenuItem key={option.value} value={option.value}>
+                          {option.label}
+                        </MenuItem>
+                      ))}
+                    </Select>
+                  </FormControl>
+                </Grid>
+                <Grid item md={2}>
+                  <Button variant="text">조회</Button>
+                </Grid>
+              </Grid>
             </Box>
             <DataTable />
           </Paper>
           {/* searching form */}
         </Grid>
 
-        <Grid item md={4}>
-          <Paper elevation={2} sx={{ height: '100%' }}>
-            asdf
+        <Grid item md={3}>
+          <Paper elevation={2} sx={{ px: 2, py: 3, height: '100%' }}>
+            <Typography sx={{ mb: 3, fontSize: 14, lineHeight: 1, color: grey[600] }}>상담내용</Typography>
+
+            <Stack spacing={2}>
+              <LocalizationProvider dateAdapter={AdapterDateFns}>
+                <DatePicker
+                  label="상담일시"
+                  value={value}
+                  onChange={(newValue) => {
+                    setValue(newValue)
+                  }}
+                  renderInput={(params) => <TextField {...params} />}
+                  readOnly
+                />
+              </LocalizationProvider>
+              <TextField label="상담사유" />
+              <TextField label="상담결과" />
+              <TextField label="상담내용" multiline rows={8} />
+              <Stack direction="row" spacing={2} alignItems="center" justifyContent="space-between">
+                <Button color="info">초기화</Button>
+                <Button>저장</Button>
+              </Stack>
+            </Stack>
           </Paper>
         </Grid>
       </Grid>

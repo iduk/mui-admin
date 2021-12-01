@@ -36,7 +36,7 @@ function Topbar(props) {
 
   return (
     <>
-      <AppBar sx={{ ...appbarStyle }} elevation={0} position="static">
+      <AppBar sx={{ ...appbarStyle }} elevation={0} position="sticky">
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             {/* 하위탭이 상단에 있을때 */}
@@ -79,6 +79,7 @@ function Topbar(props) {
             aria-haspopup="true"
             color="inherit"
             sx={{ ml: 1 }}
+            href={'/Signin'}
           >
             <LogoutIcon />
           </IconButton>
