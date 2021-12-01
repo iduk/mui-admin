@@ -47,9 +47,8 @@ const itemCategory = {
   height: 60,
   py: 2,
   px: 0,
+  justifyContent: 'center',
 }
-
-const drawerWidth = 255
 
 export default function Navigator(props) {
   const { ...other } = props
@@ -61,9 +60,9 @@ export default function Navigator(props) {
   }
 
   return (
-    <Drawer variant="permanent" sx={{ width: drawerWidth }} {...other}>
+    <Drawer variant="permanent" {...other}>
       <List disablePadding>
-        <ListItem sx={{ ...item, ...itemCategory, justifyContent: 'center' }}>
+        <ListItem sx={{ ...item, ...itemCategory }}>
           <Link href="/" sx={{ textDecoration: 'none', fontWeight: 'bold', fontSize: 22 }}>
             VITAMATE
           </Link>

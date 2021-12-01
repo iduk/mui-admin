@@ -41,7 +41,7 @@ function Copyright() {
   )
 }
 
-const drawerWidth = 256
+const drawerWidth = 240
 
 export default function Index({ children }) {
   const [mobileOpen, setMobileOpen] = React.useState(false)
